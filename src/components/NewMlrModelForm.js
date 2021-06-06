@@ -13,13 +13,12 @@ class NewMlrModelForm extends React.Component {
     fitted_model_file_path: "",
     created: "",
     updated: "",
-    project_id: "",
   };
 
   componentDidMount() {
     if (this.props.mlr_model) {
-      const { id, name, new_model_file_path, fitted_model_file_path, created , updated , project_id } = this.props.mlr_model;
-      this.setState({ id, name, new_model_file_path, fitted_model_file_path, created, updated, project_id });
+      const { id, name, new_model_file_path, fitted_model_file_path, created , updated } = this.props.mlr_model;
+      this.setState({ id, name, new_model_file_path, fitted_model_file_path, created, updated });
     }
   }
 
@@ -93,15 +92,6 @@ class NewMlrModelForm extends React.Component {
             name="updated"
             onChange={this.onChange}
             value={this.defaultIfEmpty(this.state.updated)}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="project_id">Project_id:</Label>
-          <Input
-            type="text"
-            name="project_id"
-            onChange={this.onChange}
-            value={this.defaultIfEmpty(this.state.project_id)}
           />
         </FormGroup>
         <Button>Send</Button>

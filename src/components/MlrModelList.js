@@ -16,7 +16,6 @@ class MlrModelList extends Component {
             <th>fitted_model_file_path</th>
             <th>created</th>
             <th>updated</th>
-            <th>project_id</th>
             <th></th>
           </tr>
         </thead>
@@ -35,7 +34,6 @@ class MlrModelList extends Component {
                 <td>{mlr_model.fitted_model_file_path}</td>
                 <td>{mlr_model.created}</td>
                 <td>{mlr_model.updated}</td>
-                <td>{mlr_model.project_id}</td>
                 <td align="center">
                   <NewMlrModelModal
                     create={false}
