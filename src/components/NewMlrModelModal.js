@@ -27,7 +27,7 @@ class NewMlrModelModal extends Component {
           color="primary"
           className="float-right"
           onClick={this.toggle}
-          style={{ minWidth: "500px" }}
+          style={{ minWidth: "200px" }}
         >
           Create New
         </Button>

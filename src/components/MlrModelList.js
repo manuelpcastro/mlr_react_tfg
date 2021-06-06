@@ -6,17 +6,16 @@ import NewMlrModelModal from "./NewMlrModelModal";
 
 class MlrModelList extends Component {
   render() {
-    const mlr_models = this.props.mlr_model;
+    const mlr_models = this.props.mlr_models;
     return (
       <Table dark>
         <thead>
           <tr>
             <th>Name</th>
-            <th>new_model_file_path</th>
-            <th>fitted_model_file_path</th>
+            <th>New model file path</th>
+            <th>Fitted model file path</th>
             <th>created</th>
             <th>updated</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>

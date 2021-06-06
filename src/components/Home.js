@@ -32,7 +32,7 @@ class Home extends Component {
         <Row>
           <Col>
             <MlrModelList
-              students={this.state.students}
+              mlr_models={this.state.mlr_models}
               resetState={this.resetState}
             />
           </Col>

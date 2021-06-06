@@ -41,7 +41,7 @@ class ConfirmRemovalModal extends Component {
             <Button
               type="button"
               color="primary"
-              onClick={() => this.deleteMlrModel(this.props.pk)}
+              onClick={() => this.deleteMlrModel(this.props.id)}
             >
               Yes
             </Button>
