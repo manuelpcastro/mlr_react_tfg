@@ -4,12 +4,14 @@ import { connectRouter } from "connected-react-router";
 // import new reducer
 import { signupReducer } from "./components/signup/SignupReducer";
 import { loginReducer } from "./components/login/LoginReducer";
+import {mlrModelsReducer} from "./components/mlr_models/MlrModelReducer";
 
 const createRootReducer = history =>
   combineReducers({
     router: connectRouter(history),
     createUser: signupReducer,
-    auth: loginReducer
+    auth: loginReducer,
+    mlr_models: mlrModelsReducer
   });
 
 export default createRootReducer;

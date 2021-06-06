@@ -1,0 +1,4 @@
+export const GET_MLR_MODEL = "GET_MLR_MODEL";
+export const ADD_MLR_MODEL = "ADD_MLR_MODEL";
+export const DELETE_MLR_MODEL = "DELETE_MLR_MODEL";
+export const UPDATE_MLR_MODEL = "UPDATE_MLR_MODEL";
