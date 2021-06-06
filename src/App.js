@@ -9,6 +9,11 @@ import Dashboard from "./components/dashboard/Dashboard";
 
 import Root from "./Root";
 import { Route, Switch } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import axios from "axios";
+import {API_URL} from "./constants";
+
+axios.defaults.baseURL = API_URL;
 
 class App extends Component {
   render() {
@@ -23,6 +28,7 @@ class App extends Component {
             <Route path="*">Ups</Route>
           </Switch>
         </Root>
+        <ToastContainer hideProgressBar={true} newestOnTop={true} />
       </div>
     );
   }
