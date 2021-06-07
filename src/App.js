@@ -1,7 +1,6 @@
 import './App.css';
 
 import React, { Component, Fragment } from "react";
-import Header from "./components/Header";
 import Home from "./components/Home";
 import Signup from "./components/signup/Signup";
 import Login from "./components/login/Login";
@@ -19,7 +18,7 @@ axios.defaults.baseURL = API_URL;
 class App extends Component {
   render() {
     return (
-      <div>
+      <Fragment>
         <Root>
           <Switch>
             <Route path="/signup" component={Signup} />
@@ -30,20 +29,9 @@ class App extends Component {
           </Switch>
         </Root>
         <ToastContainer hideProgressBar={true} newestOnTop={true} />
-      </div>
+      </Fragment>
     );
   }
 }
-
-// class App extends Component {
-//   render() {
-//     return (
-//       <Fragment>
-//         <Header />
-//         <Home />
-//       </Fragment>
-//     );
-//   }
-// }
 
 export default App;

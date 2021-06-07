@@ -2,12 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 
-import axios from "axios";
-
-import {API_MLRMODEL_URL} from "../constants";
-
-import NewMlrModelModal from "./NewMlrModelModal";
-import MlrModelList from "./MlrModelList";
 
 class Home extends Component {
   render() {

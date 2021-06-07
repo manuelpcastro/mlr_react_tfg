@@ -31,9 +31,9 @@ export const addMlrModel = mlr_model => dispatch => {
     });
 };
 
-export const deleteMlrModel = id => dispatch => {
+export const removeMlrModel = id => dispatch => {
   axios
-    .delete(API_MLRMODEL_URL +`${id}/`)
+    .delete(API_MLRMODEL_URL + id +'/')
     .then(response => {
       dispatch({
         type: DELETE_MLR_MODEL,
@@ -47,7 +47,7 @@ export const deleteMlrModel = id => dispatch => {
 
 export const updateMlrModel = (id, mlr_model) => dispatch => {
   axios
-    .patch(API_MLRMODEL_URL +`${id}/`, mlr_model)
+    .patch(API_MLRMODEL_URL + id+'/', mlr_model)
     .then(response => {
       dispatch({
         type: UPDATE_MLR_MODEL,

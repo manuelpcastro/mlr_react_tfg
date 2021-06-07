@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import { Container, Navbar, Nav } from "react-bootstrap";
+import { Col, Container, Row, Navbar, Nav } from "react-bootstrap";
 import { logout } from "../login/LoginActions";
 
 import MlrModelsList from "../mlr_models/MlrModelList";
-import AddMlrModel from "../mlr_models/AddMlrModel";
+import AddMlrModelForm from "../mlr_models/AddMlrModelForm";
 
 class Dashboard extends Component {
   onLogout = () => {
@@ -31,7 +31,11 @@ class Dashboard extends Component {
         <Container>
           <h1>Dashboard</h1>
           <MlrModelsList/>
-          <AddMlrModel/>
+          <Row>
+           <Col>
+             <AddMlrModelForm />
+           </Col>
+         </Row>
         </Container>
       </div>
     );
