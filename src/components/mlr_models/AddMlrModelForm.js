@@ -56,10 +56,10 @@ class AddMlrModelForm extends Component {
     return (
       <Form >
         <FormGroup>
-          <Label for="name">Name:</Label>
+          <Label for="model_name">Name:</Label>
           <Input
             type="text"
-            name="name"
+            name="model_name"
             onChange={this.onChange}
             value={this.defaultIfEmpty(this.state.model_name)}
           />
