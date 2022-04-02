@@ -1,0 +1,16 @@
+.users-table {
+  width: 100%;
+  
+  tbody {
+    tr:nth-child(2n) {
+    background-color: #dee5ed;
+    }
+    tr:nth-child(2n + 1) {
+      background-color: #F5F5F5;
+    }
+  }
+
+  th, td {
+    padding-right: 50px;
+  }
+}
