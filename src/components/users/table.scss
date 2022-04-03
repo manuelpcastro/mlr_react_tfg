@@ -3,11 +3,20 @@
   
   tbody {
     tr:nth-child(2n) {
-    background-color: #dee5ed;
+      background-color: #dee5ed;
     }
     tr:nth-child(2n + 1) {
       background-color: #F5F5F5;
     }
+  }
+
+  th {
+    padding-bottom: 20px;
+  }
+
+
+  tr th:first-child, tr td:first-child {
+    padding-left: 10px;
   }
 
   th, td {

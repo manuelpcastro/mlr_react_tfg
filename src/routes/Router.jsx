@@ -1,8 +1,8 @@
 import React from "react"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import LoginPage from "../pages/LoginPage"
-// import UsersPage from "../pages/UsersPage"
-// import ProtectedRoute from "./ProtectedRoute"
+import UsersPage from "../pages/UsersPage"
+import ProtectedRoute from "./ProtectedRoute"
 
 const Router = () => (
   <BrowserRouter>
@@ -14,9 +14,9 @@ const Router = () => (
         <ModelsPage />
       </Route> */}
 
-      {/* <ProtectedRoute path="/users">
+      <ProtectedRoute path="/users">
         <UsersPage />
-      </ProtectedRoute> */}
+      </ProtectedRoute>
 
       <Route path="/login">
         <LoginPage />
