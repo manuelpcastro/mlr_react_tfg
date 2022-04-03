@@ -11,10 +11,10 @@ const useSectionsRoutes = () => {
 
   return useMemo(() => {
     const sections = [
-      { path: DASHBOARD.url, roles: DASHBOARD.roles, children: DashboardPage },
-      // { path: PROJECTS.url, roles: PROJECTs.roles, children: ProjectsPage },
-      // { path: MODELS.url, roles: DASHBOARD.roles, children: ModelsPage },
-      { path: USERS.url, roles: USERS.roles, children: UsersPage },
+      { path: DASHBOARD.url, roles: DASHBOARD.roles, component: DashboardPage },
+      // { path: PROJECTS.url, roles: PROJECTs.roles, component: ProjectsPage },
+      // { path: MODELS.url, roles: DASHBOARD.roles, component: ModelsPage },
+      { path: USERS.url, roles: USERS.roles, component: UsersPage },
     ]
 
     return sections.filter(section => section.roles.includes(role))

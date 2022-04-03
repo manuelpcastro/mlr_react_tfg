@@ -18,7 +18,7 @@ const Router = () => {
 
         {routes.map(section => (
           <ProtectedRoute path={section.path}>
-            {section.children}
+            <section.component />
           </ProtectedRoute>
         ))}
 
