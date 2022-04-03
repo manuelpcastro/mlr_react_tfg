@@ -97,7 +97,7 @@ NewUserForm.propTypes = {
     last_login: PropTypes.string,
   }).isRequired,
   setUserData: PropTypes.func.isRequired,
-  backendErrors: PropTypes.arrayOf(PropTypes.ofObject(PropTypes.string)),
+  backendErrors: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
 }
 
 NewUserForm.defaultProps = {
