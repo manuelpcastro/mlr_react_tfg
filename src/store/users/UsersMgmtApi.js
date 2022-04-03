@@ -23,15 +23,14 @@ export const updateUser = user => dispatch => axios
   .catch(error => error)
 
 export const deleteUser = ({ username }) => dispatch => {
-  dispatch(removeUser(username))
-  // axios
-  //   .delete(`api/v1/users/${username}`)
-  //   .then(() => {
-  //     dispatch(removeUser(username))
-  //   })
-  // .catch(error => {
-  //   toastOnError(error)
-  // })
+  axios
+    .delete(`api/v1/users/${username}`)
+    .then(() => {
+      dispatch(removeUser(username))
+    })
+    .catch(error => {
+      toastOnError(error)
+    })
 }
 
 export const createUser = userData => dispatch => axios
