@@ -1,14 +1,10 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import Icon from "../common/Icon"
+import useNavbarContent from "./hooks/useNavbarContent"
 
 const Sections = () => {
-  const sections = [
-    { text: "Dashboard", icon: "chart-pie", url: "/" },
-    { text: "Projects", icon: "bars-progress", url: "/projects" },
-    { text: "Models", icon: "diagram-project", url: "/models" },
-    { text: "Users", icon: "users", url: "/users" },
-  ]
+  const sections = useNavbarContent()
 
   return (
     <div className="d-flex h-100 align-items-center">
