@@ -1,0 +1,12 @@
+$dark-color: #050505;
+
+$primary-color: #9DC5BB;
+$secondary-color: #5e807f;
+$danger-color: #9d8189;
+
+$theme-colors: (
+  "primary": $primary-color,
+  "secondary": $secondary-color,
+  "danger": $danger-color,
+  "red": $danger-color,
+);

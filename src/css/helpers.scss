@@ -1,0 +1,24 @@
+.mlr {
+  font-family: "Arial";
+
+  a {
+    color: $primary-color;
+    text-decoration: none;
+
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
+  .btn.btn-primary {
+    color: white;
+  }
+  
+  .btn.btn-danger {
+    color: white;
+  }
+}
