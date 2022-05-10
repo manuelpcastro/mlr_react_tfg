@@ -1,22 +1,19 @@
-import React, { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
+import React, { useState } from "react"
 import { Button } from "reactstrap"
 import PageTitle from "../components/page/PageTitle"
 import Page from "../components/page/Page"
 import UserModal from "../components/users/UserModal"
 
 import UsersTable from "../components/users/UserTable"
-import useUserActions from "../components/users/hooks/useUserActions"
 import Icon from "../components/common/Icon"
 import ConfirmModal from "../components/common/ConfirmModal"
 import { USERS } from "../constants/routes"
+import { useDeleteUserMutation, useGetUsersQuery } from "../services/users/api"
 
 const UsersPage = () => {
-  const { users } = useSelector(state => state.usersReducer)
+  const { data: users } = useGetUsersQuery()
 
-  const {
-    getUsers, createUser, updateUser, deleteUser,
-  } = useUserActions()
+  const [deleteUser] = useDeleteUserMutation()
 
   const [modal, setModal] = useState("")
   const closeModal = () => setModal("")
@@ -35,9 +32,7 @@ const UsersPage = () => {
     setModal("delete")
   }
 
-  const removeSelectedUser = () => deleteUser(selectedUser)
-
-  useEffect(() => getUsers, [])
+  const removeSelectedUser = () => deleteUser(selectedUser.id)
 
   return (
     <Page>
@@ -52,8 +47,8 @@ const UsersPage = () => {
         </Button>
       </div>
 
-      {modal === "create" && <UserModal isNewUser close={closeModal} confirm={createUser} />}
-      {modal === "edit" && <UserModal user={selectedUser} close={closeModal} confirm={updateUser} />}
+      {modal === "create" && <UserModal isNewUser close={closeModal} />}
+      {modal === "edit" && <UserModal user={selectedUser} close={closeModal} />}
       {modal === "delete" && (
         <ConfirmModal danger confirm={removeSelectedUser} cancel={closeModal}>
           Are you sure you want to delete user:

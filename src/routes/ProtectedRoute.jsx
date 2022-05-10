@@ -2,9 +2,10 @@ import React from "react"
 import { Route, Redirect } from "react-router-dom"
 import PropTypes from "prop-types"
 import { useSelector } from "react-redux"
+import { selectIsAuthenticated } from "../services/auth/slice"
 
 const ProtectedRoute = ({ path, children, ...routeProps }) => {
-  const { isAuthenticated } = useSelector(state => state.auth)
+  const isAuthenticated = useSelector(selectIsAuthenticated)
 
   const Component = isAuthenticated ? children : <Redirect to="/login" />
 

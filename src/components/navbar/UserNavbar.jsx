@@ -1,16 +1,37 @@
 import React from "react"
-import { useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
+import { useHistory } from "react-router-dom"
+import { useGetCurrentUserQuery } from "../../services/users/api"
+import { clearAccessToken } from "../../services/auth/slice"
 import Icon from "../common/Icon"
 
 const UserNavbar = () => {
-  const { user: currentUser } = useSelector(state => state.auth)
+  const { push } = useHistory()
+  const dispatch = useDispatch()
+  const { data } = useGetCurrentUserQuery()
+
+  const logout = () => {
+    dispatch(clearAccessToken())
+    push("/")
+  }
+
+  if (!data) {
+    return null
+  }
+
+  const { username } = data
 
   return (
     <div className="d-flex align-items-center">
       <div className="mx-2">
-        {currentUser.username}
+        {username}
       </div>
-      <Icon className="ms-2" size="lg" icon="sign-out-alt" />
+      <Icon
+        className="ms-2 cursor-pointer"
+        size="lg"
+        icon="sign-out-alt"
+        onClick={logout}
+      />
     </div>
   )
 }

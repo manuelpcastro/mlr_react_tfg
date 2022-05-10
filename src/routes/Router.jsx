@@ -3,31 +3,24 @@ import {
   BrowserRouter, Switch, Route, Redirect,
 } from "react-router-dom"
 import LoginPage from "../pages/LoginPage"
-import ProtectedRoute from "./ProtectedRoute"
-import useSectionsRoutes from "./hooks/useSectionsRoutes"
+import PrivateRoutes from "./subcomponents/PrivateRoutes"
 
-const Router = () => {
-  const routes = useSectionsRoutes()
+const Router = () => (
+  <BrowserRouter>
+    <Switch>
 
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/login">
-          <LoginPage />
-        </Route>
+      <Route path="/login">
+        <LoginPage />
+      </Route>
 
-        {routes.map(section => (
-          <ProtectedRoute path={section.path}>
-            <section.component />
-          </ProtectedRoute>
-        ))}
+      <PrivateRoutes />
 
-        <Route>
-          <Redirect to="/dashboard" />
-        </Route>
-      </Switch>
-    </BrowserRouter>
-  )
-}
+      <Route>
+        <Redirect to="/login" />
+      </Route>
+
+    </Switch>
+  </BrowserRouter>
+)
 
 export default Router
