@@ -1,34 +1,63 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { Redirect } from "react-router-dom"
+
+import { useHistory } from "react-router-dom"
 import {
-  Button, Card, CardBody, Container, Input, Row,
+  Button, Card, CardBody, Container, Input, Row, Spinner,
 } from "reactstrap"
-import { login } from "../components/login/LoginActions"
+import { useGetAccessTokenMutation } from "../services/auth/api"
+import { updateAccessToken } from "../services/auth/slice"
 
 const LoginPage = () => {
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
-
+  const { push } = useHistory()
   const dispatch = useDispatch()
 
-  const { isAuthenticated } = useSelector(state => state.auth)
+  const { authToken } = useSelector(state => state.auth)
 
-  if (isAuthenticated) {
-    return <Redirect to="/dashboard" />
-  }
+  const [getAccessToken, {
+    data, isLoading, isSuccess, isError,
+  }] = useGetAccessTokenMutation()
 
-  const handleUsernameChange = e => setUsername(e.target.value)
-  const handlePasswordChange = e => setPassword(e.target.value)
+  const [form, setForm] = useState({ username: "", password: "" })
 
   const userLogin = () => {
-    dispatch(login({ username, password }))
+    getAccessToken(form)
+  }
+
+  const handleUsernameChange = e => {
+    setForm({ ...form, username: e.target.value })
+  }
+
+  const handlePasswordChange = e => {
+    setForm({ ...form, password: e.target.value })
   }
 
   const handleOnKeyDown = e => {
-    if (e.key === "Enter" && username && password) {
+    if (e.key === "Enter" && form.username && form.password) {
       userLogin()
     }
+  }
+
+  useEffect(() => {
+    if (authToken) {
+      push("/dashboard")
+    }
+
+    if (isSuccess) {
+      dispatch(updateAccessToken(data.auth_token))
+    }
+  }, [authToken, data])
+
+  if (isLoading) {
+    return (
+      <Container className="mt-4">
+        <Card>
+          <CardBody className="text-center">
+            <Spinner size="xxl" />
+          </CardBody>
+        </Card>
+      </Container>
+    )
   }
 
   return (
@@ -42,9 +71,10 @@ const LoginPage = () => {
               name="username"
               placeholder="Username"
               type="text"
-              value={username}
+              value={form.username}
               onChange={handleUsernameChange}
               onKeyDown={handleOnKeyDown}
+              invalid={isError}
             />
           </Row>
           <Row className="mb-4 mx-2">
@@ -54,11 +84,13 @@ const LoginPage = () => {
               name="password"
               placeholder="Password"
               type="password"
-              value={password}
+              value={form.password}
               onChange={handlePasswordChange}
               onKeyDown={handleOnKeyDown}
+              invalid={isError}
             />
           </Row>
+          {isError && <p className="text-danger px-2">Your username or your password is not correct.</p>}
           <Row className="mx-2">
             <Button color="primary" onClick={userLogin}>
               Login
