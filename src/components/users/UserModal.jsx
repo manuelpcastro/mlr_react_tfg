@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import PropTypes from "prop-types"
 import {
   Button, Modal, ModalBody, ModalFooter, ModalHeader,
@@ -6,25 +6,47 @@ import {
 
 import NewUserForm from "./form/NewUserForm"
 import EditUserForm from "./form/EditUserForm"
+import { useCreateUserMutation, useUpdateUserMutation } from "../../services/users/api"
+
+const newUser = {
+  username: "", email: "", role: "", password: "", last_login: "-",
+}
 
 const UserModal = ({
-  user, close, confirm, isNewUser,
+  user, close, isNewUser,
 }) => {
-  const newUser = {
-    username: "", email: "", role: "", password: "", last_login: "-",
-  }
-  const [userData, setUserData] = useState({ ...newUser, ...user })
+  const [createNewUser, createResponse] = useCreateUserMutation()
+  const [updateUser, updateResponse] = useUpdateUserMutation()
+
+  const [userData, setUserData] = useState(user)
   const [backendErrors, setBackendErrors] = useState({})
   const useUserData = { userData, setUserData }
 
   const handleConfirm = () => {
-    const apiCall = confirm(userData)
-    apiCall.then(({ response }) => {
-      if (response.status === 400) {
-        setBackendErrors(response.data)
-      }
-    })
+    if (isNewUser) {
+      createNewUser(userData)
+    } else {
+      updateUser(userData)
+    }
   }
+
+  useEffect(() => {
+    const response = isNewUser ? createResponse : updateResponse
+
+    if (response.isError) {
+      setBackendErrors(response.error.data)
+    }
+
+    if (response.isSuccess) {
+      close()
+    }
+  }, [createResponse, updateResponse])
+
+  useEffect(() => {
+    if (user) {
+      setUserData(user)
+    }
+  }, [user?.id])
 
   const modalTitle = isNewUser ? "New user" : `Editing ${user?.username}`
 
@@ -57,12 +79,11 @@ UserModal.propTypes = {
     last_login: PropTypes.string,
   }),
   close: PropTypes.func.isRequired,
-  confirm: PropTypes.func.isRequired,
   isNewUser: PropTypes.bool,
 }
 
 UserModal.defaultProps = {
-  user: {},
+  user: newUser,
   isNewUser: false,
 }
 
