@@ -27,6 +27,13 @@ export const projectApi = createApi({
       invalidatesTags: [{ ...TAG_TYPE, id: "LIST" }],
     }),
 
+    getProject: builder.query({
+      query: id => ({
+        url: `mlr_projects/${id}`,
+        method: "GET",
+      }),
+    }),
+
     updateProject: builder.mutation({
       query: data => ({
         url: `mlr_projects/${data.id}`,
@@ -43,12 +50,22 @@ export const projectApi = createApi({
       }),
       invalidatesTags: (_result, _error, id) => [{ ...TAG_TYPE, id }],
     }),
+
+    runProject: builder.mutation({
+      query: ({ projectId, body }) => ({
+        url: `mlr_projects/${projectId}/run`,
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 })
 
 export const {
   useGetProjectsQuery,
+  useGetProjectQuery,
   useCreateProjectMutation,
   useUpdateProjectMutation,
   useDeleteProjectMutation,
+  useRunProjectMutation,
 } = projectApi
