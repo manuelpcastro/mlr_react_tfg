@@ -5,7 +5,7 @@ import {
 } from "reactstrap"
 
 const CustomDropdown = ({
-  placeholder, options, onChange,
+  className, placeholder, options, onChange,
 }) => {
   const [open, setOpen] = useState(false)
 
@@ -17,8 +17,10 @@ const CustomDropdown = ({
 
   return (
     <Dropdown isOpen={open} toggle={() => setOpen(!open)}>
-      <DropdownToggle>
-        {activeOptionValue || placeholder}
+      <DropdownToggle caret className={`text-white px-2 ${className}`}>
+        <div className="d-inline pe-2">
+          {activeOptionValue || placeholder}
+        </div>
       </DropdownToggle>
       <DropdownMenu>
         {options.map(option => (
@@ -27,6 +29,7 @@ const CustomDropdown = ({
             onClick={useCallback(() => handleClick(option?.value), [])}
             disabled={option?.disabled}
             active={option?.active}
+            color="white"
           >
             {option?.text}
           </DropdownItem>
@@ -37,6 +40,7 @@ const CustomDropdown = ({
 }
 
 CustomDropdown.propTypes = {
+  className: PropTypes.string,
   placeholder: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.shape({
     text: PropTypes.string,
@@ -48,6 +52,7 @@ CustomDropdown.propTypes = {
 }
 
 CustomDropdown.defaultProps = {
+  className: "",
   placeholder: "Select...",
   options: [],
 }

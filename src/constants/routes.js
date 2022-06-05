@@ -15,6 +15,13 @@ export const PROJECTS = {
   roles: [ADMIN, MANAGER, ANALYST],
 }
 
+export const INDIVIDUAL_PROJECT = {
+  text: "Project",
+  icon: "bars-progress",
+  url: "/project/:id",
+  roles: [ADMIN, MANAGER, ANALYST],
+}
+
 export const MODELS = {
   text: "Models",
   icon: "diagram-project",
