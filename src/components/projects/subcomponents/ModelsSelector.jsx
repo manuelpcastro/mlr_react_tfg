@@ -9,7 +9,7 @@ const ModelsSelector = ({ selectedModels, updateSelectedModels }) => {
   const mappedSelectedModels = useMemo(
     () => selectedModels?.map(modelId => {
       const modelName = models.find(model => model.id === modelId)?.text || "Unknown model"
-      return ({ id: modelId, text: modelName })
+      return ({ id: modelId, text: `Model ${modelId}` })
     }),
     [models, selectedModels],
   )

@@ -13,7 +13,11 @@ const ProjectCardHeader = ({
   const [deleteProject] = useDeleteProjectMutation()
 
   const redirectToIndividualPage = () => {
-    push(`/project/${id}`)
+    push(`/projects/${id}`)
+  }
+
+  const handleClickEdit = () => {
+    push(`/projects/${id}/edit`)
   }
 
   const handleClickDelete = () => {
@@ -27,7 +31,7 @@ const ProjectCardHeader = ({
       </h4>
       {!simplified && (
       <div className="d-flex">
-        <Button className="me-1" onClick={onEdit}>
+        <Button className="me-1" onClick={handleClickEdit}>
           <Icon size="lg" icon="pencil" className="text-white" />
         </Button>
         <Button className="ms-1" color="danger" onClick={() => setIsDeleting(true)}>

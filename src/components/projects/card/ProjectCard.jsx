@@ -7,12 +7,8 @@ import AssignedModels from "./components/AssignedModels"
 import ProjectCardHeader from "./components/Header"
 import ProjectStatus from "./components/ProjectStatus"
 
-const ProjectCard = ({ simplified, project, onEdit }) => {
+const ProjectCard = ({ simplified, project }) => {
   const { id: projectId, title: projectTitle, models: projectModels } = project || {}
-
-  const handleClickEdit = () => {
-    onEdit(project)
-  }
 
   if (!project) {
     return null
@@ -23,7 +19,6 @@ const ProjectCard = ({ simplified, project, onEdit }) => {
       <ProjectCardHeader
         id={projectId}
         title={projectTitle}
-        onEdit={handleClickEdit}
         simplified={simplified}
       />
       <CardBody>

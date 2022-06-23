@@ -21,7 +21,7 @@ const IndividualProject = () => {
           <Icon icon="file" className="me-2" />
           <p className="mb-0">Datafile</p>
         </div>
-        {project.data_file || "No datafile selected yet."}
+        {project?.data_file?.name || "No datafile selected yet."}
       </div>
       <div className="d-flex align-items-center my-2">
         <div className="col-2 d-flex align-items-center me-2 border px-2 py-1 bg-primary">

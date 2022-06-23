@@ -1,21 +1,30 @@
-import React, { useState } from "react"
+import React from "react"
 import {
   Form, FormGroup, Input, Label,
 } from "reactstrap"
-import CustomDropdown from "../common/Dropdown"
-import ModelsSelector from "./subcomponents/ModelsSelector"
+import CustomDropdown from "../../common/Dropdown"
+import ModelsSelector from "../subcomponents/ModelsSelector"
+import ProjectFileInput from "./components/ProjectFileInput"
 
 const ProjectForm = ({ project, setProject }) => {
+  // If needed in the future: useGetSamplingStrategiesQuery from the backend?
+
   const handleTitle = e => {
     setProject({ ...project, title: e.target.value })
   }
 
+  const handleAbstract = e => {
+    setProject({ ...project, abstract: e.target.value })
+  }
+
   const handleFile = e => {
-    setProject({ ...project, file_data: e.target.files[0] })
+    // TO DO: Solve issue with the file selection
+    // maybe send it on a another call once the project is created
+    setProject({ ...project, file_data: e?.target?.files[0] })
   }
 
   const handleSamplingStrategy = value => {
-    setProject({ ...project, sampling_stategy: value })
+    setProject(pr => ({ ...pr, sampling_stategy: value }))
   }
 
   const handleSeed = e => {
@@ -42,16 +51,25 @@ const ProjectForm = ({ project, setProject }) => {
       </FormGroup>
 
       <FormGroup>
+        <Label for="project-name">
+          Abstract
+        </Label>
+        <Input
+          id="project-abstract"
+          name="projectAbstract"
+          placeholder="Abstract"
+          onChange={handleAbstract}
+          value={project?.abstract}
+        />
+      </FormGroup>
+
+      <FormGroup>
         <Label for="file-data">
           File data
         </Label>
-        <Input
-          id="file-data"
-          accept=".csv"
-          name="file"
-          type="file"
+        <ProjectFileInput
           onChange={handleFile}
-          // value={project?.file_data}
+          value={project?.file_data?.name}
         />
       </FormGroup>
 
