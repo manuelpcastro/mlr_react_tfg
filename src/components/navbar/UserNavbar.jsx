@@ -12,7 +12,7 @@ const UserNavbar = () => {
 
   const logout = () => {
     dispatch(clearAccessToken())
-    push("/")
+    push("/login")
   }
 
   if (!data) {

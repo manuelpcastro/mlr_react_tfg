@@ -1,16 +1,15 @@
 import { useMemo } from "react"
-import { useSelector } from "react-redux"
 import {
   DASHBOARD, PROJECTS, MODELS, USERS,
-} from "../../../constants/routes"
+} from "../../../routes/constants"
+import { useGetCurrentUserQuery } from "../../../services/users/api"
+
+const sections = [DASHBOARD, PROJECTS, MODELS, USERS]
 
 const useNavbarContent = () => {
-  const { user: { role } } = useSelector(state => state.auth)
+  const { data } = useGetCurrentUserQuery()
 
-  return useMemo(() => {
-    const sections = [DASHBOARD, PROJECTS, MODELS, USERS]
-    return sections.filter(section => section.roles.includes(role))
-  }, [role])
+  return useMemo(() => sections.filter(section => section.roles.includes(data?.role)), [data])
 }
 
 export default useNavbarContent
