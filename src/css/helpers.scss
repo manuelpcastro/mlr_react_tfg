@@ -1,4 +1,4 @@
-.mlr {
+html {
   font-family: "Arial";
 
   a {
@@ -15,10 +15,26 @@
   }
 
   .btn.btn-primary {
-    color: white;
+    color: black;
   }
   
   .btn.btn-danger {
     color: white;
+  }
+
+  .btn.btn-white {
+    border: 1px solid #cccccc;
+  }
+  
+  .list-group .list-group-item.active {
+    background-color: $secondary-color;
+    border-color: $secondary-color;
+  }
+
+  .dropdown-item.active {
+    background-color: $secondary-color;
+  }
+  .dropdown-item:active {
+    background-color: $primary-color;
   }
 }
