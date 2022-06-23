@@ -13,12 +13,11 @@ const Router = () => (
         <LoginPage />
       </Route>
 
-      <PrivateRoutes />
-
-      <Route>
-        <Redirect to="/login" />
+      <Route exact path="/">
+        <Redirect to="/dashboard" />
       </Route>
 
+      <PrivateRoutes />
     </Switch>
   </BrowserRouter>
 )
