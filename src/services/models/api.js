@@ -18,6 +18,14 @@ export const modelApi = createApi({
         : [{ ...TAG_TYPE, id: "LIST" }]),
     }),
 
+    getModel: builder.query({
+      query: id => ({
+        url: `mlr_models/${id}`,
+        method: "GET",
+      }),
+      providesTags: result => [{ ...TAG_TYPE, id: result?.id }],
+    }),
+
     createModel: builder.mutation({
       query: data => ({
         url: "mlr_models/",
@@ -47,6 +55,7 @@ export const modelApi = createApi({
 })
 
 export const {
+  useGetModelQuery,
   useGetModelsQuery,
   useCreateModelMutation,
   useUpdateModelMutation,

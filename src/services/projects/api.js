@@ -32,6 +32,7 @@ export const projectApi = createApi({
         url: `mlr_projects/${id}`,
         method: "GET",
       }),
+      providesTags: result => [{ ...TAG_TYPE, id: result?.id }],
     }),
 
     updateProject: builder.mutation({
