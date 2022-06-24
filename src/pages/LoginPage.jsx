@@ -7,6 +7,7 @@ import {
 } from "reactstrap"
 import { useGetAccessTokenMutation } from "../services/auth/api"
 import { updateAccessToken } from "../services/auth/slice"
+import FrontPage from "./frontpage/FrontPage"
 
 const LoginPage = () => {
   const { push } = useHistory()
@@ -61,44 +62,50 @@ const LoginPage = () => {
   }
 
   return (
-    <Container className="mt-4">
-      <Card>
-        <CardBody>
-          <Row className="mb-4 mx-2">
-            Username
-            <Input
-              id="username"
-              name="username"
-              placeholder="Username"
-              type="text"
-              value={form.username}
-              onChange={handleUsernameChange}
-              onKeyDown={handleOnKeyDown}
-              invalid={isError}
-            />
-          </Row>
-          <Row className="mb-4 mx-2">
-            Password
-            <Input
-              id="password"
-              name="password"
-              placeholder="Password"
-              type="password"
-              value={form.password}
-              onChange={handlePasswordChange}
-              onKeyDown={handleOnKeyDown}
-              invalid={isError}
-            />
-          </Row>
-          {isError && <p className="text-danger px-2">Your username or your password is not correct.</p>}
-          <Row className="mx-2">
-            <Button color="primary" onClick={userLogin}>
-              Login
-            </Button>
-          </Row>
-        </CardBody>
-      </Card>
-    </Container>
+    <FrontPage>
+      <Container className="mt-4">
+        <Card>
+          <CardBody>
+            <Row className="mb-4 mx-2">
+              Username
+              <Input
+                id="username"
+                name="username"
+                placeholder="Username"
+                type="text"
+                value={form.username}
+                onChange={handleUsernameChange}
+                onKeyDown={handleOnKeyDown}
+                invalid={isError}
+              />
+            </Row>
+            <Row className="mb-4 mx-2">
+              Password
+              <Input
+                id="password"
+                name="password"
+                placeholder="Password"
+                type="password"
+                value={form.password}
+                onChange={handlePasswordChange}
+                onKeyDown={handleOnKeyDown}
+                invalid={isError}
+              />
+            </Row>
+            {isError && <p className="text-danger px-2">Your username or your password is not correct.</p>}
+            <Row className="mx-2">
+              <Button
+                className="text-white"
+                color="secondary"
+                onClick={userLogin}
+              >
+                Login
+              </Button>
+            </Row>
+          </CardBody>
+        </Card>
+      </Container>
+    </FrontPage>
   )
 }
 
