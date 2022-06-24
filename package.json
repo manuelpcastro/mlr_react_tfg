@@ -16,6 +16,7 @@
     "bootstrap": "^5.0.1",
     "connected-react-router": "^6.9.1",
     "json-server": "^0.17.0",
+    "json-server-auth": "^2.1.0",
     "lodash": "^4.17.21",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
@@ -38,7 +39,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "mock": "json-server mock/db.js --port 3004 --routes mock/routes.json"
+    "mock": "json-server mock/db.js --port 3004 --routes mock/routes.json -m ./mock/auth.middleware.js"
   },
   "eslintConfig": {
     "extends": [

@@ -6,19 +6,19 @@ export const MODELS = {
   text: "Models",
   icon: DEFAULT_MODEL_ICON,
   url: "/models",
-  roles: [ADMIN, MANAGER, undefined],
+  roles: [ADMIN, MANAGER],
 }
 
 export const NEW_MODEL = {
   text: "New model",
   icon: DEFAULT_MODEL_ICON,
   url: "/models/new",
-  roles: [ADMIN, MANAGER, undefined],
+  roles: [ADMIN, MANAGER],
 }
 
 export const EDIT_MODEL = {
   text: "Model",
   icon: DEFAULT_MODEL_ICON,
   url: "/models/:id",
-  roles: [ADMIN, MANAGER, undefined],
+  roles: [ADMIN, MANAGER],
 }

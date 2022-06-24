@@ -3,22 +3,26 @@
     {
       "id": 1,
       "username": "MockedUser",
-      "email": "mockeduser@mlr.com"
+      "email": "mockeduser@mlr.com",
+      "role": "admin"
     },
     {
       "id": 2,
       "username": "JockyMocking",
-      "email": "jockymocking@mlr.com"
+      "email": "jockymocking@mlr.com",
+      "role": "analyst"
     },
     {
       "id": 3,
       "username": "MockingNinja",
-      "email": "mockingninja@mlr.com"
+      "email": "mockingninja@mlr.com",
+      "role": "manager"
     },
     {
       "id": 4,
       "username": "Franny",
-      "email": "franny@mlr.com"
+      "email": "franny@mlr.com",
+      "role": "analyst"
     }
   ],
   "mlr_projects": [

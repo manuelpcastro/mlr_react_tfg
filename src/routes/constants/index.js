@@ -12,7 +12,7 @@ export const USERS = {
   text: "Users",
   icon: "users",
   url: "/users",
-  roles: [ADMIN, undefined],
+  roles: [ADMIN],
 }
 
 export * from "./models"

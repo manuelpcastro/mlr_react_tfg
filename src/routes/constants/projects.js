@@ -6,26 +6,26 @@ export const PROJECTS = {
   text: "Projects",
   icon: DEFAULT_PROJECT_ICON,
   url: "/projects",
-  roles: [ADMIN, MANAGER, ANALYST, undefined],
+  roles: [ADMIN, MANAGER, ANALYST],
 }
 
 export const INDIVIDUAL_PROJECT = {
   text: "Project",
   icon: DEFAULT_PROJECT_ICON,
   url: "/projects/:id",
-  roles: [ADMIN, MANAGER, ANALYST, undefined],
+  roles: [ADMIN, MANAGER, ANALYST],
 }
 
 export const NEW_PROJECT = {
   text: "New project",
   icon: DEFAULT_PROJECT_ICON,
   url: "/projects/new",
-  roles: [ADMIN, MANAGER, ANALYST, undefined],
+  roles: [ADMIN, MANAGER, ANALYST],
 }
 
 export const EDIT_PROJECT = {
   text: "Editing Project",
   icon: DEFAULT_PROJECT_ICON,
   url: "/projects/:id/edit",
-  roles: [ADMIN, MANAGER, ANALYST, undefined],
+  roles: [ADMIN, MANAGER, ANALYST],
 }

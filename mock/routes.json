@@ -1,4 +1,5 @@
 {
   "/*": "/$1",
-  "/users/me": "/users/1"
+  "/users/me": "/users/1",
+  "/token/login": "/login"
 }

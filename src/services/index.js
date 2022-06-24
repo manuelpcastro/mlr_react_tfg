@@ -5,7 +5,7 @@ export const BASE_URL = "http://localhost:8000/api/v1/"
 const MOCK_API = "http://localhost:3004/"
 
 export const baseQuery = fetchBaseQuery({
-  baseUrl: BASE_URL,
+  baseUrl: MOCK_API,
 })
 
 export const authenticatedBaseQuery = fetchBaseQuery({
