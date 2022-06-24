@@ -6,6 +6,7 @@ const TAG_TYPE = { type: "User" }
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: authenticatedBaseQuery,
+  tagTypes: [TAG_TYPE.type, "CurrentUser"],
   endpoints: builder => ({
 
     getCurrentUser: builder.query({
@@ -13,6 +14,7 @@ export const userApi = createApi({
         url: "users/me/",
         method: "GET",
       }),
+      providesTags: ["CurrentUser"],
     }),
 
     getUsers: builder.query({

@@ -18,18 +18,8 @@ const DualList = ({ items, selectedItems, updateSelectedItems }) => {
     leftListSelectedItems: [],
     rightListSelectedItems: [],
   }), [items])
-  // const [leftItems, handleLeftItemClick] = useSelectedItems(options)
-  // const [rightItems, handleRightItemClick] = useSelectedItems()
-  // const [
-  //   leftListItems,
-  //   rightListItems,
-  //   moveToRightList,
-  //   moveToLeftList,
-  // ] = useListItems(options)
 
   const [state, dispatch] = useReducer(dualListReducer, initialState)
-
-  console.log("STATE", state)
 
   const handleLeftListChange = itemIds => {
     dispatch({

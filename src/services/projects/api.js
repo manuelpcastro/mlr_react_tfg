@@ -6,6 +6,7 @@ const TAG_TYPE = { type: "Projects" }
 export const projectApi = createApi({
   reducerPath: "projectApi",
   baseQuery: authenticatedBaseQuery,
+  tagTypes: [TAG_TYPE.type],
   endpoints: builder => ({
 
     getProjects: builder.query({

@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import PropTypes from "prop-types"
 import { Button } from "reactstrap"
 import PageTitle from "../components/page/PageTitle"
 import Page from "../components/page/Page"
@@ -7,10 +8,9 @@ import UserModal from "../components/users/UserModal"
 import UsersTable from "../components/users/UserTable"
 import Icon from "../components/common/Icon"
 import ConfirmModal from "../components/common/ConfirmModal"
-import { USERS } from "../constants/routes"
 import { useDeleteUserMutation, useGetUsersQuery } from "../services/users/api"
 
-const UsersPage = () => {
+const UsersPage = ({ icon, title }) => {
   const { data: users } = useGetUsersQuery()
 
   const [deleteUser] = useDeleteUserMutation()
@@ -36,7 +36,7 @@ const UsersPage = () => {
 
   return (
     <Page>
-      <PageTitle icon={USERS.icon} title={USERS.text} />
+      <PageTitle icon={icon} title={title} />
 
       <UsersTable users={users} editUser={editUserData} removeUser={removeUser} />
 
@@ -58,6 +58,11 @@ const UsersPage = () => {
       )}
     </Page>
   )
+}
+
+UsersPage.propTypes = {
+  icon: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 }
 
 export default UsersPage

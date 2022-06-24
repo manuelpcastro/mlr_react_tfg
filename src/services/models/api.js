@@ -6,6 +6,7 @@ const TAG_TYPE = { type: "Models" }
 export const modelApi = createApi({
   reducerPath: "modelApi",
   baseQuery: authenticatedBaseQuery,
+  tagTypes: [TAG_TYPE.type],
   endpoints: builder => ({
 
     getModels: builder.query({

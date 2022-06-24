@@ -9,7 +9,7 @@ const PrivateRoutes = () => {
   const [routes, isLoading] = useSectionsRoutes()
 
   const mappedRoutes = routes.map(section => (
-    <ProtectedRoute exact path={section.path}>
+    <ProtectedRoute key={section.path} exact path={section.path}>
       <section.component
         icon={section.icon}
         title={section.title}
