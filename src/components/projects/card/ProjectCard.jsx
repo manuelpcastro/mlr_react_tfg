@@ -5,7 +5,6 @@ import {
 import Icon from "../../common/Icon"
 import AssignedModels from "./components/AssignedModels"
 import ProjectCardHeader from "./components/Header"
-import ProjectStatus from "./components/ProjectStatus"
 
 const ProjectCard = ({ simplified, project }) => {
   const { id: projectId, title: projectTitle, models: projectModels } = project || {}
@@ -22,7 +21,6 @@ const ProjectCard = ({ simplified, project }) => {
         simplified={simplified}
       />
       <CardBody>
-        <ProjectStatus status={project.status} />
         <div className="d-flex justify-content-between mb-2">
           <div className="d-flex align-items-center">
             <Icon icon="calendar" className="me-2" />
