@@ -1,13 +1,13 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useFilters, useTable } from "react-table"
-import { Spinner } from "reactstrap"
 
 import useTableStructure from "./hooks/useColumns"
 import Header from "./table/Header"
 import Row from "./table/Row"
 
 import "./table.scss"
+import CenteredSpinner from "../common/CenteredSpinner"
 
 // eslint-disable-next-line react/prop-types
 const Rows = ({ rows, prepareRow }) => (
@@ -23,7 +23,7 @@ const Rows = ({ rows, prepareRow }) => (
 )
 
 const UserTable = ({ users, editUser, removeUser }) => {
-  if (!users) return <Spinner />
+  if (!users) return <CenteredSpinner />
 
   const data = users
 

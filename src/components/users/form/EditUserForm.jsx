@@ -26,6 +26,10 @@ const EditUserForm = ({
     setUserData(prevUserData => ({ ...prevUserData, email: e.target.value }))
   }
 
+  const handlePasswordChange = e => {
+    setUserData(prevUserData => ({ ...prevUserData, password: e.target.value }))
+  }
+
   const handleRoleChange = role => setUserData(prevUserData => ({ ...prevUserData, role }))
 
   return (
@@ -49,7 +53,7 @@ const EditUserForm = ({
 
       <div className="d-flex flex-column mb-2">
         Password
-        <Input type="password" placeholder="Change password" value={userData?.password} />
+        <Input type="password" placeholder="Change password" onChange={handlePasswordChange} value={userData?.password} />
         {userData?.password && passwordErrors.map(e => <small className="text-danger">{e.message}</small>)}
       </div>
 

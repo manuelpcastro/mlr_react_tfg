@@ -24,6 +24,10 @@ const NewUserForm = ({ userData, setUserData, backendErrors }) => {
     setUserData(prevUserData => ({ ...prevUserData, email: e.target.value }))
   }
 
+  const handlePasswordChange = e => {
+    setUserData(prevUserData => ({ ...prevUserData, password: e.target.value }))
+  }
+
   const handleRoleChange = role => setUserData(prevUserData => ({ ...prevUserData, role }))
 
   return (
@@ -69,20 +73,11 @@ const NewUserForm = ({ userData, setUserData, backendErrors }) => {
           invalid={passwordErrors.length > 0}
           type="password"
           placeholder="Password"
+          onChange={handlePasswordChange}
           value={userData?.password}
           autoComplete={false}
         />
         {passwordErrors.map(e => <small className="text-danger">{e.message}</small>)}
-      </div>
-
-      <div className="d-flex flex-column mb-2">
-        Confirm Password
-        <Input
-          type="password"
-          placeholder="Password"
-          value={userData?.password}
-          autoComplete={false}
-        />
       </div>
     </>
   )
