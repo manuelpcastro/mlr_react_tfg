@@ -4,7 +4,7 @@ import DeleteModelButton from "./DeleteModelButton"
 import EditModelButton from "./EditModelButton"
 
 const ModelCardActions = ({ id }) => (
-  <div className="d-flex flex-column flex-sm-row">
+  <div className="d-flex flex-column flex-sm-row justify-content-center">
     <EditModelButton id={id} />
     <div className="mt-2 d-sm-none" />
     <DeleteModelButton id={id} />

@@ -29,7 +29,6 @@
     {
       "id": 1,
       "title": "First Project",
-      "status": "processing",
       "abstract": "This is a summary",
       "last_updated_at": "10/03/2022T13:00:12",
       "random_state": 67,
@@ -38,7 +37,6 @@
     {
       "id": 2,
       "title": "Second Project",
-      "status": "error",
       "abstract": "This is a summary",
       "last_updated_at": "10/03/2022T13:00:12",
       "random_state": 4,
@@ -47,7 +45,6 @@
     {
       "id": 3,
       "title": "Second Project",
-      "status": "no_models",
       "abstract": "This is a summary",
       "last_updated_at": "10/03/2022T13:00:12"
     }
@@ -55,38 +52,43 @@
   "mlr_models": [
     {
       "id": 1,
-      "model_name": "First Model",
-      "abstract": "This is a summary",
+      "model_name": "First Model", 
+      "type": "NN",     
+      "status": "processing",
       "last_updated_at": "10/03/12T13:00:12"
     },
     {
       "id": 2,
       "model_name": "Second Model",
-      "abstract": "This is a summary",
+      "type": "DecisionTree",
+      "status": "error",
       "last_updated_at": "10/03/12T13:00:12"
     },
     {
       "id": 3,
       "model_name": "Third Model",
-      "abstract": "This is a summary",
+      "type": "DecisionTree",
+      "status": "ready",
       "last_updated_at": "10/03/12T13:00:12"
     },
     {
       "id": 4,
       "model_name": "Model A",
-      "abstract": "This is a summary",
+      "type": "RandomForest",
+      "status": "processed",
       "last_updated_at": "10/03/12T13:00:12"
     },
     {
       "id": 5,
       "model_name": "Model B",
-      "abstract": "This is a summary",
+      "type": "SVM",
+      "status": "processing",
       "last_updated_at": "10/03/12T13:00:12"
     },
     {
       "id": 6,
+      "type": "NN",
       "model_name": "Model C",
-      "abstract": "This is a summary",
       "last_updated_at": "10/03/12T13:00:12"
     }
   ]

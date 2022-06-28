@@ -26,6 +26,7 @@ const ModelsList = () => {
             <ModelCard
               id={model?.id}
               type={model?.type}
+              status={model?.status}
             />
           </Col>
         ))}

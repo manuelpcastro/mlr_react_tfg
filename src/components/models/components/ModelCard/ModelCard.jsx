@@ -5,8 +5,10 @@ import {
 } from "reactstrap"
 import ModelCardActions from "./components/ModelCardActions"
 import ModelCardImg from "./components/ModelCardImg"
+import ModelStatus from "./components/ModelStatus"
+import ModelType from "./components/ModelType"
 
-const ModelCard = ({ id, type }) => {
+const ModelCard = ({ id, status, type }) => {
   if (!id || !type) {
     return null
   }
@@ -18,11 +20,15 @@ const ModelCard = ({ id, type }) => {
       <CardTitle className="text-center py-2 bg-primary fw-bold">
         {`Model ${id}`}
       </CardTitle>
-      <CardBody className="d-flex flex-column align-items-center">
-        <ModelCardImg type={type} />
-        <hr />
-        {`Type: ${type}`}
-        <hr />
+      <CardBody className="d-flex flex-column">
+        <div className="d-flex justify-content-center">
+          <ModelCardImg type={type} />
+        </div>
+        <hr className="invisible" />
+        <ModelType type={type} />
+        <hr className="invisible" />
+        <ModelStatus status={status} />
+        <hr className="invisible" />
         <ModelCardActions id={id} />
       </CardBody>
     </Card>
@@ -31,6 +37,7 @@ const ModelCard = ({ id, type }) => {
 
 ModelCard.propTypes = {
   id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  status: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
 }
 

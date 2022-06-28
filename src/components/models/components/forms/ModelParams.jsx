@@ -3,7 +3,9 @@ import PropTypes from "prop-types"
 import Parameter from "./parameters/Parameter"
 import ParametersContextProvider from "./parameters/context/ParametersContextProvider"
 
-const ModelParams = ({ modelParameters, parameters, setParameters }) => {
+const ModelParams = ({
+  disabled, modelParameters, parameters, setParameters,
+}) => {
   if (!modelParameters.length || !Object.keys(parameters).length > 0) {
     return (
       <div>
@@ -18,27 +20,30 @@ const ModelParams = ({ modelParameters, parameters, setParameters }) => {
         Fill the parameters
       </div>
       <div className="d-flex flex-column">
-        <ParametersContextProvider
-          parameters={parameters}
-          setParameters={setParameters}
-        >
-          {modelParameters.map(parameter => (
-            <Parameter
-              key={parameter.id}
-              id={parameter.id}
-              title={parameter.title}
-              type={parameter.type}
-              options={parameter.values}
-              defaultValue={parameter.default}
-            />
-          ))}
-        </ParametersContextProvider>
+        <fieldset disabled={disabled}>
+          <ParametersContextProvider
+            parameters={parameters}
+            setParameters={setParameters}
+          >
+            {modelParameters.map(parameter => (
+              <Parameter
+                key={parameter.id}
+                id={parameter.id}
+                title={parameter.title}
+                type={parameter.type}
+                options={parameter.values}
+                defaultValue={parameter.default}
+              />
+            ))}
+          </ParametersContextProvider>
+        </fieldset>
       </div>
     </div>
   )
 }
 
 ModelParams.propTypes = {
+  disabled: PropTypes.bool,
   modelParameters: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string,
@@ -50,6 +55,10 @@ ModelParams.propTypes = {
     [PropTypes.string]: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   }).isRequired,
   setParameters: PropTypes.func.isRequired,
+}
+
+ModelParams.defaultProps = {
+  disabled: false,
 }
 
 export default ModelParams
