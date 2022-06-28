@@ -2,6 +2,7 @@ import React from "react"
 import { useParams } from "react-router-dom"
 import { useGetProjectQuery } from "../../services/projects/api"
 import Icon from "../common/Icon"
+import EditProjectButton from "./subcomponents/EditProjectButton"
 import ModelRunner from "./subcomponents/ModelRunner"
 
 const IndividualProject = () => {
@@ -14,6 +15,7 @@ const IndividualProject = () => {
 
   return (
     <>
+      <EditProjectButton />
       <h5>{project.title}</h5>
       <p>{project.abstract}</p>
       <div className="d-flex align-items-center my-2">
@@ -21,7 +23,7 @@ const IndividualProject = () => {
           <Icon icon="file" className="me-2" />
           <p className="mb-0">Datafile</p>
         </div>
-        {project?.data_file?.name || "No datafile selected yet."}
+        {project.file_data?.name || "No datafile selected yet."}
       </div>
       <div className="d-flex align-items-center my-2">
         <div className="col-2 d-flex align-items-center me-2 border px-2 py-1 bg-primary">

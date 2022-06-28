@@ -29,7 +29,7 @@ const AssignedModels = ({ projectModels }) => {
 
       <ListGroup className="ps-2 mt-2">
         {mappedProjectModels.map(model => (
-          <ListGroupItem>
+          <ListGroupItem key={model?.id}>
             {model.text}
           </ListGroupItem>
         ))}

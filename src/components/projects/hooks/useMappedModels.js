@@ -5,7 +5,7 @@ const useMappedModels = () => {
   const { data: models } = useGetModelsQuery()
 
   return useMemo(
-    () => (models || []).map(({ id, model_name }) => ({ id, text: `Model ${id}` })),
+    () => (models || []).map(({ id, status }) => ({ id, status, text: `Model ${id}` })),
     [models],
   )
 }

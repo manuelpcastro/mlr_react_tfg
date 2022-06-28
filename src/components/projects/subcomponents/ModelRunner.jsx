@@ -1,9 +1,12 @@
 import React, { useState, useMemo } from "react"
 import { useParams } from "react-router-dom"
-import { Button, Col, Row } from "reactstrap"
+import {
+  Badge, Button, Col, Row,
+} from "reactstrap"
 import { useGetProjectQuery, useRunProjectMutation } from "../../../services/projects/api"
 import IndividualList from "../../common/dual-list/IndividualList"
 import useMappedModels from "../hooks/useMappedModels"
+import ModelBadge from "./ModelBadge"
 
 const ModelRunner = () => {
   const { id: projectId } = useParams()
@@ -15,7 +18,17 @@ const ModelRunner = () => {
   const { models: projectModels } = project || {}
 
   const mappedProjectModels = useMemo(
-    () => models.filter(model => projectModels?.includes(model.id)),
+    () => models
+      .filter(model => projectModels?.includes(model.id))
+      .map(model => {
+        const isProcessing = model.status === "processing"
+
+        if (isProcessing) {
+          return { ...model, disabled: true, text: <ModelBadge modelName={model?.text} /> }
+        }
+
+        return model
+      }),
     [projectModels, models],
   )
 
@@ -56,13 +69,18 @@ const ModelRunner = () => {
   return (
     <Row className="pt-4">
       <Col xs="6" className="d-flex flex-column justify-content-around">
-        <Button color="primary" onClick={runAllModels}>
+        <Button
+          color="primary"
+          disabled={mappedProjectModels.some(model => model.disabled)}
+          onClick={runAllModels}
+        >
           Run all
         </Button>
         <Button
           onClick={runSelectedModels}
           disabled={selectedModels.length === 0}
           color="secondary"
+          className="text-white"
         >
           Run selected
         </Button>
