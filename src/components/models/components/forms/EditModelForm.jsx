@@ -46,6 +46,13 @@ const EditModelForm = ({ id, close }) => {
   return (
     <div className="d-flex align-items-center">
       <Col xs="3">
+        <div className="d-flex justify-content-center">
+          <h4>
+            Model
+            {" "}
+            {model?.id}
+          </h4>
+        </div>
         <div className="model-selector d-flex flex-wrap justify-content-center">
           <ModelTypeCard
             onClick={() => {}}
