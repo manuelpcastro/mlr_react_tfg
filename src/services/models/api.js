@@ -1,5 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react"
 import { authenticatedBaseQuery } from ".."
+import { MODELS_API } from "./constants"
 
 const TAG_TYPE = { type: "Models" }
 
@@ -11,7 +12,7 @@ export const modelApi = createApi({
 
     getModels: builder.query({
       query: () => ({
-        url: "mlr_models/",
+        url: MODELS_API,
         method: "GET",
       }),
       providesTags: result => (result // successful query
@@ -21,7 +22,7 @@ export const modelApi = createApi({
 
     getModel: builder.query({
       query: id => ({
-        url: `mlr_models/${id}`,
+        url: `${MODELS_API}/${id}`,
         method: "GET",
       }),
       providesTags: result => [{ ...TAG_TYPE, id: result?.id }],
@@ -29,7 +30,7 @@ export const modelApi = createApi({
 
     createModel: builder.mutation({
       query: data => ({
-        url: "mlr_models/",
+        url: MODELS_API,
         method: "POST",
         body: data,
       }),
@@ -38,7 +39,7 @@ export const modelApi = createApi({
 
     updateModel: builder.mutation({
       query: data => ({
-        url: `mlr_models/${data.id}`,
+        url: `${MODELS_API}/${data.id}`,
         method: "PATCH",
         body: data,
       }),
@@ -47,7 +48,7 @@ export const modelApi = createApi({
 
     deleteModel: builder.mutation({
       query: id => ({
-        url: `mlr_models/${id}`,
+        url: `${MODELS_API}/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: (_result, _error, id) => [{ ...TAG_TYPE, id }],
