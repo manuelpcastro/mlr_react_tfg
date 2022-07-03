@@ -75,7 +75,7 @@ const EditModelForm = ({ id, close }) => {
         {isProcessingData && (
           <small className="text-secondary">
             <Icon icon="rotate" size="lg" className="me-2 spin" />
-            This model is currently processing data. Parameters cannot be edited.
+            This model is currently processing data. Hyperparameters cannot be edited.
           </small>
         )}
 

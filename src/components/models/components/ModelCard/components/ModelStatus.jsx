@@ -24,9 +24,11 @@ const ModelStatus = ({ status }) => {
   }, [status])
 
   return (
-    <div className="mw-100 px-3 mb-2">
-      <div className="d-flex align-items-center mb-2">
+    <div className="d-flex align-items-center justify-content-center mb-2">
+      <div className="d-flex align-items-center">
+        <Icon icon="dot-circle" className="me-2" />
         Status:
+        {" "}
       </div>
       <div className={`d-flex align-items-center ${color}`}>
         <Icon icon={icon} className="mx-2" />

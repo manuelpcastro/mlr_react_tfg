@@ -1,10 +1,15 @@
 import React from "react"
 import PropTypes from "prop-types"
+import Icon from "../../../../common/Icon"
 
 const ModelType = ({ type }) => (
-  <div className="mw-100 mx-3">
-    <div className=" d-flex align-items-center justify-content-start mb-2">Type:</div>
-    <div className="d-flex align-items-center mx-2">{type}</div>
+  <div>
+    <div className=" d-flex align-items-center justify-content-center mb-2">
+      <Icon icon="sun" className="me-2" />
+      Type:
+      {" "}
+      {type}
+    </div>
   </div>
 )
 
