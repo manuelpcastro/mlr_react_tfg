@@ -1,7 +1,7 @@
-import React, { useState, useMemo } from "react"
+import React, { useEffect, useState, useMemo } from "react"
 import { useParams } from "react-router-dom"
 import {
-  Badge, Button, Col, Row,
+  Button, Col, Row,
 } from "reactstrap"
 import { useGetProjectQuery, useRunProjectMutation } from "../../../services/projects/api"
 import IndividualList from "../../common/dual-list/IndividualList"
@@ -10,7 +10,7 @@ import ModelBadge from "./ModelBadge"
 
 const ModelRunner = () => {
   const { id: projectId } = useParams()
-  const [runProject] = useRunProjectMutation()
+  const [runProject, { isSuccess, isError }] = useRunProjectMutation()
   const { data: project } = useGetProjectQuery(projectId)
   const [selectedModels, setSelectedModels] = useState([])
   const models = useMappedModels()
@@ -32,6 +32,12 @@ const ModelRunner = () => {
     [projectModels, models],
   )
 
+  useEffect(() => {
+    if (isSuccess) {
+      setSelectedModels([])
+    }
+  }, [isSuccess])
+
   const selectModel = id => {
     if (selectedModels.includes(id)) {
       setSelectedModels(selectedModels.filter(i => i !== id))
@@ -44,7 +50,7 @@ const ModelRunner = () => {
     runProject(
       {
         projectId,
-        body: { models: mappedProjectModels.map(({ id }) => id) },
+        body: { projectId, models: mappedProjectModels.map(({ id }) => id) },
       },
     )
   }
@@ -53,7 +59,7 @@ const ModelRunner = () => {
     runProject(
       {
         projectId,
-        body: { models: selectedModels },
+        body: { projectId, models: selectedModels },
       },
     )
   }
@@ -61,13 +67,21 @@ const ModelRunner = () => {
   if (!mappedProjectModels || mappedProjectModels.length === 0) {
     return (
       <div className="d-flex py-4">
-        No models selected for this project yet
+        No models selected for this project yet.
+      </div>
+    )
+  }
+
+  if (isError) {
+    return (
+      <div className="d-flex py-4">
+        Something went wrong! Please reload the page and try again.
       </div>
     )
   }
 
   return (
-    <Row className="pt-4">
+    <Row className="py-4">
       <Col xs="6" className="d-flex flex-column justify-content-around">
         <Button
           color="primary"
