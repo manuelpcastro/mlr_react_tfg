@@ -4,6 +4,7 @@ import { useGetProjectQuery } from "../../services/projects/api"
 import Icon from "../common/Icon"
 import EditProjectButton from "./subcomponents/EditProjectButton"
 import ModelRunner from "./subcomponents/ModelRunner"
+import ResultsList from "./subcomponents/ResultsList/ResultsList"
 
 const IndividualProject = () => {
   const { id: projectId } = useParams()
@@ -32,8 +33,10 @@ const IndividualProject = () => {
         </div>
         {project.random_state}
       </div>
-
+      <hr />
       <ModelRunner />
+      <hr />
+      <ResultsList />
     </>
   )
 }

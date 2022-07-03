@@ -1,7 +1,9 @@
 import { createApi } from "@reduxjs/toolkit/query/react"
 import { authenticatedBaseQuery } from ".."
+import { MODELS_TAG } from "../models/constants"
+import { PROJECTS_API, PROJECTS_RESULTS_TAG, PROJECTS_TAG } from "./constants"
 
-const TAG_TYPE = { type: "Projects" }
+const TAG_TYPE = { type: PROJECTS_TAG }
 
 export const projectApi = createApi({
   reducerPath: "projectApi",
@@ -11,7 +13,7 @@ export const projectApi = createApi({
 
     getProjects: builder.query({
       query: () => ({
-        url: "mlr_projects/",
+        url: PROJECTS_API,
         method: "GET",
       }),
       providesTags: result => (result // successful query
@@ -21,7 +23,7 @@ export const projectApi = createApi({
 
     createProject: builder.mutation({
       query: data => ({
-        url: "mlr_projects/",
+        url: PROJECTS_API,
         method: "POST",
         body: data,
       }),
@@ -30,7 +32,7 @@ export const projectApi = createApi({
 
     getProject: builder.query({
       query: id => ({
-        url: `mlr_projects/${id}`,
+        url: `${PROJECTS_API}/${id}`,
         method: "GET",
       }),
       providesTags: result => [{ ...TAG_TYPE, id: result?.id }],
@@ -38,7 +40,7 @@ export const projectApi = createApi({
 
     updateProject: builder.mutation({
       query: data => ({
-        url: `mlr_projects/${data.id}`,
+        url: `${PROJECTS_API}/${data.id}`,
         method: "PATCH",
         body: data,
       }),
@@ -47,7 +49,7 @@ export const projectApi = createApi({
 
     deleteProject: builder.mutation({
       query: id => ({
-        url: `mlr_projects/${id}`,
+        url: `${PROJECTS_API}/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: (_result, _error, id) => [{ ...TAG_TYPE, id }],
@@ -55,10 +57,31 @@ export const projectApi = createApi({
 
     runProject: builder.mutation({
       query: ({ projectId, body }) => ({
-        url: `mlr_projects/${projectId}/run`,
+        url: `${PROJECTS_API}/${projectId}/run`,
         method: "POST",
         body,
       }),
+      invalidatesTags: (_result, _error, params) => [
+        { type: PROJECTS_RESULTS_TAG, id: params?.projectId },
+        { type: MODELS_TAG, id: "LIST" },
+        params.body.models.map(modelId => ({ type: MODELS_TAG, id: modelId })),
+      ],
+    }),
+
+    getProjectResults: builder.query({
+      query: projectId => ({
+        url: `${PROJECTS_API}/${projectId}/results`,
+        method: "GET",
+      }),
+      providesTags: (result, error, id) => [{ type: PROJECTS_RESULTS_TAG, id }],
+    }),
+
+    deleteProjectResult: builder.mutation({
+      query: ({ resultId }) => ({
+        url: `results/${resultId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: (result, error, { projectId: id }) => [{ type: PROJECTS_RESULTS_TAG, id }],
     }),
   }),
 })
@@ -70,4 +93,6 @@ export const {
   useUpdateProjectMutation,
   useDeleteProjectMutation,
   useRunProjectMutation,
+  useGetProjectResultsQuery,
+  useDeleteProjectResultMutation,
 } = projectApi
