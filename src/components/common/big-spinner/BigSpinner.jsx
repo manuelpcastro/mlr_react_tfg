@@ -1,15 +1,20 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 import Icon from "../Icon"
 import "./BigSpinner.scss"
 
 const BigSpinner = ({ show }) => {
   const [isShowing, setIsShowing] = useState(true)
+  const [transitioning, setTransitioning] = useState(true)
 
-  const checkShow = () => {
-    if (!show) {
+  useEffect(() => {
+    if (!show && !transitioning) {
       setIsShowing(false)
     }
+  }, [show, transitioning])
+
+  const updateTransitioning = () => {
+    setTransitioning(false)
   }
 
   if (!isShowing) {
@@ -26,7 +31,7 @@ const BigSpinner = ({ show }) => {
     >
       <div
         className={`${className} ${fadeClass}`}
-        onTransitionEnd={checkShow}
+        onTransitionEnd={updateTransitioning}
       >
         <Icon icon="brain" size="8x" className="pb-4" />
         <h2>MACHINE LEARNING RESEARCH</h2>
