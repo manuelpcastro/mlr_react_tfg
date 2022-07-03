@@ -27,7 +27,7 @@ const ProjectCard = ({ simplified, project }) => {
             Last update:
           </div>
           <small>
-            {project.last_updated_at || "-"}
+            {project.updated_at || "-"}
           </small>
         </div>
         {!simplified && (

@@ -26,12 +26,15 @@ const ProjectCardHeader = ({
   return (
     <CardHeader className="d-flex align-items-center justify-content-between">
       <h4 onClick={redirectToIndividualPage} className="d-flex align-items-center mb-0 cursor-pointer">
-        <Icon icon="bars-progress" size="1x" className="me-2" />
+        <Icon icon="bars-progress" size="md" className="me-2" />
         {title}
       </h4>
       {!simplified && (
       <div className="d-flex">
-        <Button className="me-1" onClick={handleClickEdit}>
+        <Button className="me-1" color="primary" onClick={redirectToIndividualPage}>
+          <Icon size="lg" icon="eye" />
+        </Button>
+        <Button className="mx-1" onClick={handleClickEdit}>
           <Icon size="lg" icon="pencil" className="text-white" />
         </Button>
         <Button className="ms-1" color="danger" onClick={() => setIsDeleting(true)}>
